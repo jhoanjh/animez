@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DiamantePlay - Iniciar Sesión</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #f0f0f0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-image: url('https://www.dropbox.com/scl/fi/kfd7cx0md65tpzum4f5hs/BD-26DVD_Volume_3.png?rlkey=egn78t2lusw4o9vg4trz778ei&dl=1'); /* Asegúrate de usar una URL válida */
+            background-size: cover;
+            background-position: center;
+            animation: fadeInBackground 1s ease-in;
+        }
+
+        @keyframes fadeInBackground {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        .login-container {
+            background-color: rgba(255, 255, 255, 0.9);
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            width: 300px;
+            animation: slideIn 0.5s ease-out;
+        }
+
+        @keyframes slideIn {
+            from {
+                transform: translateY(-50%);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        h1 {
+            margin-bottom: 20px;
+            color: #333;
+            font-size: 1.5em;
+        }
+
+        input[type="email"], input[type="password"] {
+            width: 100%;
+            padding: 12px;
+            margin: 10px 0;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 1em;
+            transition: border-color 0.3s;
+        }
+
+        input[type="email"]:focus, input[type="password"]:focus {
+            border-color: #27ae60;
+            outline: none;
+        }
+
+        button {
+            background-color: #27ae60;
+            color: white;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 5px;
+            font-size: 1em;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.3s;
+        }
+
+        button:hover {
+            background-color: #2ecc71;
+            transform: translateY(-2px);
+        }
+
+        .error-message {
+            color: red;
+            margin-top: 10px;
+            animation: fadeIn 0.5s ease-in;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        footer {
+            position: fixed;
+            bottom: 10px;
+            width: 100%;
+            text-align: center;
+            color: #888;
+            font-size: 0.8em;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="login-container">
+        <h1>Iniciar Sesión</h1>
+        <form id="loginForm">
+            <input type="email" id="email" placeholder="Correo electrónico" required>
+            <input type="password" id="password" placeholder="Contraseña" required>
+            <button type="submit">Iniciar</button>
+        </form>
+        <p class="error-message" id="error-message"></p>
+    </div>
+
+    <footer>
+        &copy; 2024 DiamantePlay. Todos los derechos reservados.
+    </footer>
+
+    <script>
+        const loginForm = document.getElementById('loginForm');
+        const errorMessage = document.getElementById('error-message');
+
+        // Credenciales válidas
+        const validCredentials = [
+            { email: "pruev2024@gmail.com", password: "123456" },
+            { email: "correo2@example.com", password: "contraseña2" },
+            { email: "correo3@example.com", password: "contraseña3" }
+        ];
+
+        loginForm.addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+
+            // Validar credenciales
+            if (validateCredentials(email, password)) {
+                window.location.href = "https://jhoanjh.github.io/anim/"; // Redirigir a la página principal de ventas
+            } else {
+                showErrorMessage('Correo o contraseña incorrectos.');
+            }
+        });
+
+        function validateCredentials(email, password) {
+            return validCredentials.some(cred => cred.email === email && cred.password === password);
+        }
+
+        function showErrorMessage(message) {
+            errorMessage.textContent = message;
+            errorMessage.classList.add('fade-in');
+            setTimeout(() => {
+                errorMessage.classList.remove('fade-in');
+            }, 3000);
+        }
+    </script>
+
+</body>
+</html>
